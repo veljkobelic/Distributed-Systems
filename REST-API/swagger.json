@@ -1,0 +1,231 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Job Board API",
+      "version": "1.0.0",
+      "description": "API for a job board application"
+    },
+    "paths": {
+      "/jobs": {
+        "get": {
+          "summary": "List all job postings",
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Job"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "summary": "Create a new job posting",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobInput"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Created",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Job"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/jobs/{jobId}/applications": {
+        "post": {
+          "summary": "Submit a job application",
+          "parameters": [
+            {
+              "name": "jobId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationInput"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Created",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Application"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "get": {
+          "summary": "List all applications for a job",
+          "parameters": [
+            {
+              "name": "jobId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Application"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "Job": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "location": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "postedDate": {
+              "type": "string",
+              "format": "date"
+            },
+            "company": {
+              "$ref": "#/components/schemas/Company"
+            }
+          }
+        },
+        "JobInput": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "location": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "companyId": {
+              "type": "string"
+            }
+          }
+        },
+        "Company": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            }
+          }
+        },
+        "Application": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "jobId": {
+              "type": "string"
+            },
+            "userId": {
+              "type": "string"
+            },
+            "submittedDate": {
+              "type": "string",
+              "format": "date"
+            },
+            "status": {
+              "type": "string"
+            },
+            "user": {
+              "$ref": "#/components/schemas/User"
+            }
+          }
+        },
+        "ApplicationInput": {
+          "type": "object",
+          "properties": {
+            "userId": {
+              "type": "string"
+            }
+          }
+        },
+        "User": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
