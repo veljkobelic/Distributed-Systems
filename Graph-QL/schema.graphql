@@ -1,0 +1,52 @@
+# Die Query-Definitionen ermöglichen das Abrufen von Daten
+type Query {
+  # Gibt eine Liste aller Jobs zurück
+  jobs: [Job!]!
+  # Gibt einen spezifischen Job anhand seiner ID zurück
+  job(id: ID!): Job
+  # Gibt alle Bewerbungen für einen bestimmten Job zurück
+  applicationsForJob(jobId: ID!): [Application!]!
+}
+# Die Mutation-Definitionen ermöglichen das Erstellen/Verändern von Daten
+type Mutation {
+  createJob(input: CreateJobInput!): Job!
+  submitApplication(jobId: ID!, userId: ID!): Application!
+}
+# Repräsentiert ein Jobangebot
+type Job {
+  id: ID!
+  title: String!
+  description: String!
+  location: String!
+  type: String!
+  posted_date: String!
+  company: Company!
+}
+# Repräsentiert ein Unternehmen
+type Company {
+  id: ID!
+  name: String!
+  description: String!
+}
+# Repräsentiert einen Benutzer (Bewerber)
+type User {
+  id: ID!
+  name: String!
+  email: String!
+}
+ # Repräsentiert eine Bewerbung auf einen Job
+type Application {
+  id: ID!
+  submitted_date: String!
+  status: String!
+  user: User!
+  job: Job!
+}
+# Input-Typ zur Erstellung eines neuen Jobs
+input CreateJobInput {
+  title: String!
+  description: String!
+  location: String!
+  type: String!
+  companyId: ID!
+}
