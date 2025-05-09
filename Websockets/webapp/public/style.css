@@ -1,0 +1,84 @@
+body {
+    font-family: Inter;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.app {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.headingContainer {
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+}
+
+#labelContainer {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    gap: 3px;
+    margin-bottom: 100px;
+}
+
+.labelsContainer {
+    display: flex;
+    gap: 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.nameLabel {
+    font-weight: bold;
+}
+
+.teamLabel {
+    font-weight: bold;
+}
+
+.statusLabel {
+    background-color: yellow;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.timeLabel {
+    background-color: lightgreen;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.inputContainer {
+    width: 100vw;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    position: fixed;
+    bottom: 0;
+    background-color: white;
+}
+
+input {
+    background-color: lightgray;
+    border: 0;
+    border-radius: 5px;
+    height: 30px
+}
+
+button {
+    background-color: green;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    height: 30px;
+}

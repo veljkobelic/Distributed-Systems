@@ -1,0 +1,19 @@
+[
+{
+    "type": "event",
+    "from": "user",
+    "time": 1111,
+    "title": "Example event title"
+},
+
+{
+    
+    "type": "score_update",
+    "from": "system",
+    "time": 1123,
+    "home_team": "FirstTeam",
+    "away_team": "SecondTeam",
+    "home_score": 14,
+    "away_score": 10
+}
+]

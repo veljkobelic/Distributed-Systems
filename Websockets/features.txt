@@ -1,0 +1,5 @@
+1. Each event has a title and time which will be displayed for other users.
+2. The events should be visible on a screen for all users.
+3. There should be a textfield where we can write down the name of the user which will send the message. 
+4. There should be a textfield where we can write down the title of the event happend. 
+5. The server should send updates of the game score every half minute.
