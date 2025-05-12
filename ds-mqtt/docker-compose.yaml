@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  emqx:
+    image: emqx/emqx
+    ports:
+      - "1883:1883"
+      - "18083:18083"
+    healthcheck:
+      test: ["CMD", "emqx_ctl", "status"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 3s
+
+  server:
+    build: .
+    volumes:
+      - .:/app
+    working_dir: /app
+    entrypoint: ["python", "server.py"]
+    depends_on:
+      emqx:
+        condition: service_healthy
+    environment:
+      - PYTHONUNBUFFERED=1
+
+  machine-sensor:
+    build: .
+    volumes:
+      - .:/app
+    working_dir: /app
+    entrypoint: ["python", "client.py", "machine_1"]
+    depends_on:
+      emqx:
+        condition: service_healthy
+    environment:
+      - PYTHONUNBUFFERED=1
